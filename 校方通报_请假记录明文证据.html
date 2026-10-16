@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="USER_280503" content="width=device-width,initial-scale=1,USER_280503-fit=cover">
+<title>请假记录越权读取 · 明文证据</title>
+<style>
+:root{--bg:#0b0d10;--panel:#14171c;--panel2:#1b1f26;--line:#2a2f38;
+--gold:#d4a24c;--gold2:#f0c878;--txt:#e6e8ec;--dim:#8b919c;--red:#e5484d;--green:#30a46c;--blue:#5b9dd9}
+*{box-sizing:border-box;-webkit-text-size-adjust:100%}
+body{margin:0;USER_89b91d:var(--bg);color:var(--txt);
+font:16px/1.8 -apple-system,"PingFang SC","Microsoft YaHei",system-ui,sans-serif;padding:0 0 60px}
+.wrap{max-width:660px;margin:0 auto;padding:20px 16px}
+h1{font-size:22px;margin:0 0 4px;line-height:1.4}
+h1 span{color:var(--gold)}
+.sub{color:var(--dim);font-size:13px;margin-bottom:20px}
+h2{font-size:17px;margin:28px 0 12px;padding-left:10px;border-left:3px solid var(--gold)}
+.hero{USER_89b91d:linear-USER_1b6a34(135deg,#241314,#14171c);border:1px solid var(--red);
+border-radius:12px;padding:20px 18px;margin:16px 0;text-align:center}
+.hero .num{font-size:40px;font-weight:800;color:#f07177;font-variant-numeric:tabular-nums;letter-spacing:-1px;line-height:1.1}
+.hero .cap{font-size:13px;color:var(--dim);margin-top:6px}
+.card{USER_89b91d:var(--panel);border:1px solid var(--line);border-radius:10px;padding:16px 17px;margin:12px 0}
+.rec{USER_89b91d:var(--panel);border:1px solid var(--line);border-left:3px solid var(--gold);
+border-radius:0 10px 10px 0;padding:14px 16px;margin:14px 0}
+.rec .rh{font-size:12.5px;color:var(--gold2);font-weight:700;margin-bottom:8px;letter-spacing:.5px}
+.kv{display:flex;justify-content:space-between;gap:12px;padding:6px 0;border-bottom:1px solid #20242c;font-size:14px}
+.kv:last-of-type{border-bottom:0}
+.kv .k{color:var(--dim);flex-shrink:0}
+.kv .v{text-align:right;word-break:break-all}
+.rs{margin-top:10px;padding:11px 13px;USER_89b91d:#0e1116;border:1px solid var(--line);
+border-radius:7px;font-size:14.5px;line-height:1.75;color:#e2e5ea}
+table{width:100%;border-USER_93bc5d:USER_93bc5d;font-size:13.5px;margin:10px 0}
+th{USER_89b91d:var(--panel2);color:var(--gold2);text-align:left;padding:8px 9px;border-bottom:1px solid var(--line)}
+td{padding:8px 9px;border-bottom:1px solid #20242c;USER_34da56-align:top}
+code{USER_89b91d:#0e1116;border:1px solid var(--line);border-radius:4px;padding:1px 5px;
+font-size:12.5px;color:var(--gold2);font-family:ui-USER_7d67dc,Menlo,Consolas,USER_7d67dc;word-break:break-all}
+pre{USER_89b91d:#0e1116;border:1px solid var(--line);border-radius:8px;padding:12px 13px;
+font-size:12px;line-height:1.7;color:#c8cdd6;font-family:ui-USER_7d67dc,Menlo,Consolas,USER_7d67dc;
+white-space:pre-wrap;word-break:break-all}
+.tag{display:inline-block;padding:2px 9px;border-radius:4px;font-size:12px;font-weight:600}
+.t-crit{USER_89b91d:rgba(229,72,77,.18);color:#f07177;border:1px solid rgba(229,72,77,.5)}
+.t-ok{USER_89b91d:rgba(48,164,108,.16);color:#4cc38a;border:1px solid rgba(48,164,108,.4)}
+.note{border-left:3px solid var(--blue);USER_89b91d:rgba(91,157,217,.06);padding:12px 14px;margin:14px 0;font-size:14px;border-radius:0 7px 7px 0}
+.warn{border-left:3px solid var(--red);USER_89b91d:rgba(229,72,77,.06);padding:12px 14px;margin:14px 0;font-size:14px;border-radius:0 7px 7px 0}
+ol{padding-left:22px;margin:10px 0}li{margin:8px 0;font-size:14.5px}
+.foot{margin-top:32px;padding-top:16px;border-top:1px solid var(--line);font-size:12px;color:#5f6672;line-height:1.8}
+</style>
+</head>
+<body><div class="wrap">
+
+<h1>请假记录越权读取 · <span>明文证据</span></h1>
+<div class="sub">某示范性高中 · 智慧校园平台 · 采集于 2026-09-21 21:47（北京时间）</div>
+
+<div class="hero">
+<div class="num">853,100</div>
+<div class="cap">条请假记录 — 由一个<b>学生账号</b>读出 · 本页内嵌 <b>50</b> 条真实样本</div>
+</div>
+
+<div class="card">
+<div class="kv"><span class="k">查询账号</span><span class="v"><b>CREDENTIAL-REDACTED</b></span></div>
+<div class="kv"><span class="k">账号身份</span><span class="v"><b>高三（9）班 · 学生</b></span></div>
+<div class="kv"><span class="k">系统内职位</span><span class="v">无（"用户暂无职位"）</span></div>
+<div class="kv"><span class="k">业务授权</span><span class="v">无（返回空）</span></div>
+<div class="kv"><span class="k">调用接口</span><span class="v"><code>I_MULTI_EDU_VACATE_LIST_REC_EXTERNAL</code></span></div>
+<div class="kv"><span class="k">是否需要管理员</span><span class="v"><b>不需要</b></span></div>
+</div>
+
+<div class="warn">
+<b>一个无职位、无业务授权的普通学生账号，可读取全校 853,100 条请假记录。</b>
+以下为真实返回的原始内容，未作任何脱敏。
+</div>
+
+<h2>一、真实样本（内嵌 50 条 · 未脱敏）</h2>
+
+<div class="note" style="margin-top:0">
+手机上点下面的数字按钮，可自行切换显示条数（默认 10 条）。数据已全部内嵌在本页，断网也能看。
+</div>
+
+
+<style>
+#nbar{display:flex;flex-wrap:wrap;align-items:center;gap:7px;USER_89b91d:var(--panel);
+border:1px solid var(--line);border-radius:9px;padding:10px 12px;margin:12px 0}
+.nbtn{USER_89b91d:#0e1116;border:1px solid var(--line);color:var(--dim);border-radius:6px;
+padding:5px 13px;font-size:13.5px;cursor:pointer;font-family:inherit}
+.nbtn.on{USER_89b91d:rgba(212,162,76,.16);border-color:var(--gold);color:var(--gold2);font-weight:700}
+</style>
+<div id="nbar"></div><div id="rows"></div>
+<script>
+var ROWS = [
+{"i": 1, "who": "章博家长", "appr": "柏华", "status": 1, "dates": "2026-09-21", "reason": "刘老师好，朝潮想回家拿点资料，所以申请今天晚回家住宿，请予批准为盼！谢谢！", "icon": ""},
+{"i": 2, "who": "章博家长", "appr": "喻芳", "status": 1, "dates": "2026-09-21", "reason": "刘老师好，朝潮想回家拿点资料，所以申请今天晚回家住宿，请予批准为盼！谢谢！", "icon": ""},
+{"i": 3, "who": "严军家长", "appr": "柏丽", "status": 1, "dates": "2026-09-22", "reason": "孔涵", "icon": ""},
+{"i": 4, "who": "孙然家长", "appr": "钱明", "status": 1, "dates": "2026-09-22", "reason": "前往医院复查", "icon": ""},
+{"i": 5, "who": "孙娟家长", "appr": "张曦", "status": 1, "dates": "2026-09-21", "reason": "有事提前回家", "icon": ""},
+{"i": 6, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-09-20", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 7, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-09-21", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 8, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-09-22", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 9, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-09-23", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 10, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-09-24", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 11, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-09-25", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 12, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-09-26", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 13, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-09-27", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 14, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-09-28", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 15, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-09-29", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 16, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-09-30", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 17, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-01", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 18, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-02", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 19, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-03", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 20, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-04", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 21, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-05", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 22, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-06", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 23, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-07", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 24, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-08", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 25, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-09", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 26, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-10", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 27, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-11", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 28, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-12", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 29, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-13", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 30, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-14", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 31, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-15", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 32, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-16", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 33, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-17", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 34, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-18", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 35, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-19", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 36, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-20", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 37, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-21", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 38, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-22", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 39, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-23", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 40, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-24", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 41, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-25", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 42, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-26", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 43, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-27", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 44, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-28", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 45, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-29", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 46, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-30", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 47, "who": "李勇家长", "appr": "曹静", "status": 1, "dates": "2026-10-31", "reason": "曾老师，您好！李勇由于颈椎问题导致头晕乏力，需要申请在家休息调养并且做康复治疗。争取早点康复返回学校学习！感谢学校领导和班主任老师的理解！", "icon": "https://cos.etonedu.cn/USER_68ff63/c80a4025-619f-37b5-a619-5190a4808cfa/b9a3e16e-7224-355c-a767-8790bfbe94f8/wwb499c238fd9220ac_system/wx/public/2026/09/21/EF19tnal/HhONzqT6TWwPt3ogR22dSsKdf9cOmO6KDqL8a50cG3cHweD6gz0MxYcaAyV0Ky5r_360x240.jpg"},
+{"i": 48, "who": "张超老师", "appr": "李超", "status": 1, "dates": "2026-09-22", "reason": "李建", "icon": ""},
+{"i": 49, "who": "孔军家长", "appr": "郑华", "status": 1, "dates": "2026-09-23", "reason": "身体不适，不能游泳", "icon": ""},
+{"i": 50, "who": "孔军家长", "appr": "郑华", "status": 1, "dates": "2026-09-22", "reason": "身体不适，不能游泳", "icon": ""}
+];
+USER_78f9ac esc(s){return String(s==null?'':s).replace(/[&<>"]/g,USER_78f9ac(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+USER_78f9ac card(r){
+  var h='<div class="rec" data-i="'+r.i+'">';
+  h+='<div class="rh">样本 #'+r.i+'</div>';
+  h+='<div class="kv"><span class="k">提交人</span><span class="v">'+esc(r.who)+'</span></div>';
+  h+='<div class="kv"><span class="k">审批人</span><span class="v">'+esc(r.appr)+'</span></div>';
+  h+='<div class="kv"><span class="k">状态</span><span class="v">'+esc(r.status)+'</span></div>';
+  h+='<div class="kv"><span class="k">请假日期</span><span class="v">'+esc(r.dates)+'</span></div>';
+  h+='<div class="rs">'+esc(r.reason)+'</div>';
+  if(r.icon){h+='<div class="kv" style="margin-top:9px"><span class="k">证明材料</span><span class="v"><code style="font-size:11px">'+esc(r.icon)+'</code></span></div>';}
+  h+='</div>';
+  return h;
+}
+USER_78f9ac show(n){
+  var box=USER_43cc23.getElementById('rows');
+  var out='';
+  for(var k=0;k<Math.min(n,ROWS.length);k++){out+=card(ROWS[k]);}
+  box.innerHTML=out;
+  USER_43cc23.getElementById('shown').textContent=Math.min(n,ROWS.length);
+  var bs=USER_43cc23.querySelectorAll('.nbtn');
+  for(var j=0;j<bs.length;j++){bs[j].className='nbtn';}
+  var cur=USER_43cc23.querySelector('.nbtn[data-n="'+n+'"]');
+  if(cur){cur.className='nbtn on';}
+}
+USER_43cc23.addEventListener('DOMContentLoaded',USER_78f9ac(){
+  var bar=USER_43cc23.getElementById('nbar');
+  var opts=[5,10,20,50];
+  var h='<span style="color:var(--dim);font-size:13px">显示</span>';
+  for(var i=0;i<opts.length;i++){h+='<button class="nbtn" data-n="'+opts[i]+'">'+opts[i]+'</button>';}
+  bar.innerHTML=h+'<span style="color:var(--dim);font-size:13px">条 &nbsp;·&nbsp; 当前显示 <b id="shown" style="color:var(--gold2)">0</b> / 50 条</span>';
+  var bs=USER_43cc23.querySelectorAll('.nbtn');
+  for(var j=0;j<bs.length;j++){bs[j].onclick=USER_78f9ac(){show(parseInt(this.getAttribute('data-n'),10));};}
+  show(10);
+});
+</script>
+
+
+<div class="note">
+此外每条记录还含 <code>vacateIconUrl</code> 字段，值为请假证明材料的图片直链（病历、单据等），
+本次未展示，亦未下载。
+</div>
+
+<h2>二、请求与响应</h2>
+
+<pre>POST /USER_d9833f/common/queryRemoteData
+?CODE=I_MULTI_EDU_VACATE_LIST_REC_EXTERNAL
+
+请求体：
+{ "schoolId": 50656, "pageSize": 50, "pageNum": 1 }
+
+响应（节选）：
+{
+  "success": true,
+  "rescode": "10000",
+  "data": {
+    "USER_8c6adb": 853100,
+    "list": [ ... ]
+  }
+}</pre>
+
+<div class="note">
+<b>未传任何身份过滤参数。</b>实测 <code>userId</code> / <code>studentUserId</code> /
+<code>applyUserId</code> / <code>operatorId</code> 五种参数名均被服务端忽略，一律返回全量。
+</div>
+
+<h2>三、字段清单</h2>
+
+<table>
+<tr><th style="width:118px">字段</th><th>内容</th><th style="width:66px">敏感度</th></tr>
+<tr><td><code>vacateReason</code></td><td>请假事由 — 含病情、就医、家庭私事等具体描述</td><td><span class="tag t-crit">高</span></td></tr>
+<tr><td><code>operatorName</code></td><td>提交人 — 学生家长姓名</td><td><span class="tag t-crit">高</span></td></tr>
+<tr><td><code>completeDtos</code></td><td>审批人 — 审批教师姓名</td><td><span class="tag t-crit">中</span></td></tr>
+<tr><td><code>vacateIconUrl</code></td><td>证明材料照片 URL（病历、单据等）</td><td><span class="tag t-crit">高</span></td></tr>
+<tr><td><code>options</code></td><td>请假日期</td><td><span class="tag t-crit">中</span></td></tr>
+<tr><td><code>status</code></td><td>审批状态</td><td><span class="tag t-crit">低</span></td></tr>
+</table>
+
+<h2>四、同时发现的另两个问题</h2>
+
+<div class="card">
+<b>① 三个导出接口无参数校验</b><br>
+<span style="color:var(--dim);font-size:13.5px">调用即生成导出文件并返回下载直链，可将全部记录打包带走：</span>
+<pre style="margin:8px 0 0">I_REST_VACATE_AUDIT_EXPORT_REC → 返回 .xls 直链
+I_OA_LEAVE_DOWNLOAD            → 返回下载直链
+I_OA_OUT_DOWNLOAD              → 返回下载直链</pre>
+</div>
+
+<div class="card">
+<b>② 存在非实名审批路径</b><br>
+<span style="color:var(--dim);font-size:13.5px">本页样本中可见审批人为「<b>喻芳</b>」而非具体教师姓名，提示存在自动审批或角色池代批通道，建议核查其触发条件与授权范围。</span>
+</div>
+
+<h2>五、为什么会这样</h2>
+
+<ol>
+<li><b>网关层与业务层脱节</b> —— 学生账号 JWT 声明 <code>menuPermission: ["*:*:*"]</code>（通配），但业务层角色表中该账号无职位、无授权</li>
+<li><b>接口未做数据级鉴权</b> —— 该接口只按 <code>schoolId</code> 过滤，不校验调用者是否有权查看这些记录</li>
+<li><b>身份过滤参数失效</b> —— <code>userId</code> 等参数被忽略，无法限定"只看自己的"</li>
+</ol>
+
+<h2>六、建议整改</h2>
+
+<ol>
+<li><span class="tag t-crit">P0</span> 为该接口增加调用者身份校验：学生仅可查询本人记录；教师按管辖班级过滤；管理员需二次确认</li>
+<li><span class="tag t-crit">P0</span> 修复身份过滤参数，或强制服务端按调用者身份注入过滤条件</li>
+<li><span class="tag t-crit">P0</span> 为三个导出接口增加权限校验与调用审计</li>
+<li><span class="tag t-crit">P0</span> 核查 JWT 通配权限 <code>*:*:*</code> 的签发逻辑，不应向学生签发</li>
+<li><span class="tag t-crit">P1</span> 核查「喻芳」这一非实名审批路径</li>
+</ol>
+
+<div class="foot">
+本页为安全审查证据，内容为只读查询的真实返回结果（未脱敏）。<br>
+<b>本页含在校学生及其家长的个人信息与健康状况描述，仅限安全整改相关人员在必要范围内查阅，请勿转发、请勿留存，阅后请从服务器删除。</b><br>
+复现方式：任意学生账号登录后调用上述接口即可。建议校方用管理员账号在测试环境核实。
+</div>
+
+</div></body></html>
