@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="USER_280503" content="width=device-width, initial-scale=1.0">
+<title>该校智慧校园平台越权访问漏洞通报</title>
+<style>
+  :root{
+    --ink:#1a1d21; --ink2:#4a5058; --ink3:#767d87;
+    --line:#e3e6ea; --bg:#ffffff; --soft:#f7f8fa;
+    --red:#c0392b; --redbg:#fdf1ef; --amber:#a86b00; --amberbg:#fff8ec;
+    --green:#1f7a4d; --greenbg:#eef8f2; --blue:#1a4f8a; --bluebg:#eef3fa;
+  }
+  *{box-sizing:border-box}
+  body{
+    margin:0; USER_89b91d:var(--soft); color:var(--ink);
+    font-family:"PingFang SC","Microsoft YaHei","Hiragino Sans GB",-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+    font-size:15px; line-height:1.75; -webkit-font-USER_3637a6:USER_3e0b58;
+  }
+  .page{max-width:900px; margin:0 auto; USER_89b91d:var(--bg); padding:56px 60px 72px;}
+  h1{font-size:26px; line-height:1.4; margin:0 0 6px; letter-spacing:-.2px;}
+  .sub{color:var(--ink3); font-size:14px; margin-bottom:28px;}
+  h2{font-size:19px; margin:44px 0 14px; padding-bottom:9px; border-bottom:2px solid var(--ink); letter-spacing:-.1px;}
+  h3{font-size:16px; margin:28px 0 10px; color:var(--ink);}
+  p{margin:12px 0;}
+  ul,ol{margin:12px 0; padding-left:22px;}
+  li{margin:6px 0;}
+  table{width:100%; border-USER_93bc5d:USER_93bc5d; margin:16px 0; font-size:13.5px;}
+  th{USER_89b91d:var(--soft); text-align:left; padding:10px 12px; border:1px solid var(--line); font-weight:600; color:var(--ink);}
+  td{padding:10px 12px; border:1px solid var(--line); USER_34da56-align:top;}
+  tbody tr:nth-child(even){USER_89b91d:#fbfcfd;}
+  code{USER_89b91d:var(--soft); padding:2px 6px; border-radius:3px; font-family:"SFMono-Regular",Consolas,"Liberation Mono",USER_7d67dc; font-size:12.5px; color:var(--ink); word-break:break-all;}
+  pre{USER_89b91d:var(--soft); border:1px solid var(--line); border-radius:6px; padding:14px 16px; USER_94fa3e-x:auto; font-size:12.5px; line-height:1.6;}
+  pre code{USER_89b91d:none; padding:0;}
+  .meta{width:100%; border-USER_93bc5d:USER_93bc5d; margin:0 0 8px;}
+  .meta th{width:120px; USER_89b91d:var(--soft);}
+  .banner{border-radius:8px; padding:18px 22px; margin:22px 0; border-left:4px solid;}
+  .b-red{USER_89b91d:var(--redbg); border-color:var(--red);}
+  .b-amber{USER_89b91d:var(--amberbg); border-color:var(--amber);}
+  .b-green{USER_89b91d:var(--greenbg); border-color:var(--green);}
+  .b-blue{USER_89b91d:var(--bluebg); border-color:var(--blue);}
+  .banner p{margin:6px 0;}
+  .banner p:first-child{margin-top:0} .banner p:last-child{margin-bottom:0}
+  .tag{display:inline-block; padding:3px 10px; border-radius:20px; font-size:12.5px; font-weight:600; margin-right:6px;}
+  .t-red{USER_89b91d:var(--red); color:#fff;}
+  .t-amber{USER_89b91d:var(--amber); color:#fff;}
+  .t-green{USER_89b91d:var(--green); color:#fff;}
+  .big{font-size:30px; font-weight:700; line-height:1.1; letter-spacing:-.5px;}
+  .stats{display:flex; flex-wrap:wrap; gap:14px; margin:18px 0 6px;}
+  .stat{flex:1 1 150px; border:1px solid var(--line); border-radius:8px; padding:14px 16px; USER_89b91d:var(--soft);}
+  .stat .big{color:var(--red);}
+  .stat .lbl{font-size:12.5px; color:var(--ink3); margin-top:4px;}
+  .footer{margin-top:52px; padding-top:18px; border-top:1px solid var(--line); font-size:12.5px; color:var(--ink3);}
+  .note{font-size:13px; color:var(--ink3);}
+  @media print{
+    body{USER_89b91d:#fff} .page{padding:0; max-width:none; font-size:12px;}
+    h2{page-break-after:avoid} table{page-break-inside:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+<h1>某示范性高中 智慧校园平台<br>越权访问漏洞通报</h1>
+<div class="sub">报送日期 2026-09-20 · 已获授权测试 · 建议校内渠道处理，勿公开披露</div>
+
+<table class="meta">
+  <tr><th>涉及系统</th><td><code>TARGET-SSO.example.edu</code> 智慧校园公共服务平台（<code>/USER_d9833f/</code>，etonedu USER_429c64）</td></tr>
+  <tr><th>漏洞类型</th><td>垂直越权 / 越权访问导致批量个人信息泄露</td></tr>
+  <tr><th>综合评级</th><td><span class="tag t-red">高危</span> CVSS 约 8.5</td></tr>
+  <tr><th>利用门槛</th><td>极低 —— 任意在校学生用正常浏览器、正常账号即可完成</td></tr>
+</table>
+
+<div class="banner b-red">
+  <p><strong>一句话结论</strong></p>
+  <p><strong>任意一个在校学生的登录账号，可批量读取全校教职工名录、全校学生的请假事由、留宿/退宿/调宿记录（含宿舍房间号），孔曦校长信箱来信全文。</strong>后端接口没有做"这条记录属于谁"的校验。</p>
+</div>
+
+<h2>一、影响范围（实测数据）</h2>
+<p>以下数字均为<strong>实测返回记录数</strong>，非估算。测试使用一个普通学生账号的会话。</p>
+
+<div class="stats">
+  <div class="stat"><div class="big">14,561</div><div class="lbl">学生留宿记录</div></div>
+  <div class="stat"><div class="big">3,438</div><div class="lbl">教职工请假记录</div></div>
+  <div class="stat"><div class="big">743</div><div class="lbl">全校教职工名录</div></div>
+  <div class="stat"><div class="big">740</div><div class="lbl">学生退宿记录</div></div>
+  <div class="stat"><div class="big">87</div><div class="lbl">对学生放行的接口</div></div>
+</div>
+
+<h3>教职工个人信息类（含健康与生育信息）</h3>
+<table>
+  <thead><tr><th style="width:130px">数据类型</th><th style="width:210px">接口 CODE</th><th style="width:88px">记录数</th><th>返回的关键字段</th></tr></thead>
+  <tbody>
+    <tr><td><strong>全校教职工名录</strong></td><td><code>I_CORE_QUERY_TEACHER_LIST</code></td><td><strong>743</strong></td><td><code>userId</code>、<code>userName</code>（<strong>姓名完整明文</strong>）、<code>mobile</code>（服务端已半掩码，如 <code>1XX****XXXX</code>）</td></tr>
+    <tr><td><strong>教职工请假记录</strong></td><td><code>I_OA_QUERY_LEAVE_LIST</code></td><td><strong>3,438</strong></td><td>姓名、科组/部门、假型、<strong>请假事由（明文）</strong>、<strong>工作安排（明文，含代课教师姓名）</strong>、起止时间、审批结果</td></tr>
+  </tbody>
+</table>
+
+<p><strong>请假记录假型分布（实测 3,438 条）：</strong></p>
+<table>
+  <thead><tr><th>假型</th><th>条数</th><th>假型</th><th>条数</th></tr></thead>
+  <tbody>
+    <tr><td>公假</td><td>1,569</td><td>丧假</td><td>84</td></tr>
+    <tr><td><strong>病假</strong></td><td><strong>1,053</strong></td><td>婚假</td><td>32</td></tr>
+    <tr><td>事假</td><td>546</td><td><strong>陪产假</strong></td><td>25</td></tr>
+    <tr><td>其他</td><td>118</td><td><strong>产假</strong></td><td>5</td></tr>
+  </tbody>
+</table>
+<div class="banner b-red">
+  <p>→ 其中 <strong>病假 1,053 条</strong>涉及教职工健康信息，<strong>产假/陪产假 30 条</strong>涉及生育信息，均属《个人信息保护法》定义的<strong>敏感个人信息</strong>。<br>
+  → 数据主体判定：按部门名统计，<strong>2,171 条属"科/处/行政/中心/室"等教职工部门，0 条属学生班级</strong>，另 1,267 条部门名未匹配关键词（同样非班级）。</p>
+</div>
+
+<h3>学生个人信息类（主体为未成年人，敏感度最高）</h3>
+<table>
+  <thead><tr><th style="width:130px">数据类型</th><th style="width:210px">接口 CODE</th><th style="width:88px">记录数</th><th>返回的关键字段</th></tr></thead>
+  <tbody>
+    <tr><td><strong>学生留宿记录</strong></td><td><code>I_MULTI_OVERNIGHT_PAGE</code></td><td><strong>14,561</strong></td><td>姓名、性别、班级、留宿起止时间、<strong>留宿原因（明文）</strong>、审批结果</td></tr>
+    <tr><td><strong>学生退宿记录</strong></td><td><code>I_DORM_DORM_QUIT_PAGE</code></td><td><strong>740</strong><br><span class="note">涉及 1,144 个学生 ID</span></td><td>姓名、班级、<strong>原房间号（明文）</strong>、退宿时间、<strong>退宿原因（明文）</strong></td></tr>
+    <tr><td><strong>学生调宿记录</strong></td><td><code>I_REST_DORMITORY_PAGE</code></td><td><strong>16</strong><br><span class="note">涉及 30 个学生 ID</span></td><td>姓名、班级、<strong>原宿舍→新宿舍（明文）</strong>、<strong>调宿原因（明文）</strong></td></tr>
+    <tr><td><strong>校长信箱来信</strong></td><td><code>I_REPORT_BOX_LIST</code></td><td><strong>78</strong></td><td>来信人姓名、班级、标题、<strong>来信正文（完整）</strong></td></tr>
+  </tbody>
+</table>
+
+<div class="banner b-amber">
+  <p><strong>⚠ 额外提示</strong>：导出任务列表接口 <code>I_CONSUME_CONSUME_HANDLE_CARD_QUERY_EXPORT</code> 返回 27 条记录，含 <code>respUrl</code> <strong>导出文件下载链接</strong>。本次测试<strong>未下载任何文件</strong>，但校方应假设该链接可被任意学生获取并下载，建议一并排查其鉴权。</p>
+</div>
+
+<h2>二、字段内容真实性验证</h2>
+<p>为避免"字段存在但为空"的误判，对每个敏感字段做了抽样统计（每接口抽样 50 条，<strong>只统计，不记录任何内容</strong>）：</p>
+<table>
+  <thead><tr><th>字段</th><th>非空率</th><th>含中文</th><th>长度中位数</th><th>结论</th></tr></thead>
+  <tbody>
+    <tr><td><code>leaveReason</code> 请假事由</td><td><strong>50/50 = 100%</strong></td><td>100%</td><td>15 字（最长 68）</td><td>真实可读自由文本</td></tr>
+    <tr><td><code>reason</code> 留宿原因</td><td>100%</td><td>100%</td><td>22 字（最长 85）</td><td>真实可读自由文本</td></tr>
+    <tr><td><code>reason</code> 退宿原因</td><td>100%</td><td>100%</td><td>11 字（最长 55）</td><td>真实可读自由文本</td></tr>
+    <tr><td><code>USER_1f5087</code> 校长信箱正文</td><td>100%</td><td>100%</td><td><strong>98 字</strong>（最长 996）</td><td>完整来信内容</td></tr>
+    <tr><td><code>applyUserName</code> 姓名</td><td>100%</td><td>100%</td><td>3 字</td><td>真实中文姓名</td></tr>
+    <tr><td><code>oldRoomName</code> 原房间号</td><td>100%</td><td>—</td><td>12 字符</td><td>明文房间号</td></tr>
+  </tbody>
+</table>
+<p class="note">时间字段（<code>startTime</code>/<code>endTime</code>/<code>quitTime</code>）为 13 位毫秒时间戳（数值型），同样可读。<strong>结论：以上字段全部是真实、完整、可读的明文内容，不是枚举 ID，也不是空值。</strong></p>
+
+<h2>三、漏洞成因（供技术负责人定位）</h2>
+
+<h3>3.1 直接原因：接口缺少"何杰"校验</h3>
+<p>后端接口接受 <code>schoolId</code>（学校 ID）作为查询范围，但<strong>不接受、也不校验"操作者只能看自己的数据"</strong>。</p>
+<table>
+  <thead><tr><th>测试条件</th><th>返回结果</th></tr></thead>
+  <tbody>
+    <tr><td>完整参数（含 <code>userId</code>=本人）</td><td>返回全量 3,438 条</td></tr>
+    <tr><td><strong>完全不带任何用户范围参数</strong>（只传 <code>schoolId</code>）</td><td><strong>仍返回全量 3,438 条</strong></td></tr>
+    <tr><td><code>pageSize=1</code></td><td>返回 1 条（分页被遵守）</td></tr>
+    <tr><td><strong><code>pageSize=5000</code></strong></td><td><strong>一次返回全部 3,438 条（分页可绕过）</strong></td></tr>
+  </tbody>
+</table>
+<p>→ 不带用户参数照样返回全量，说明<strong>后端根本没有实现用户级过滤逻辑</strong>，不是参数漏传。</p>
+
+<h3>3.2 根本原因：网关按 CODE 路由，但不按角色鉴权</h3>
+<p>平台采用"单端点 RPC 网关"架构，所有业务共用一个 URL，靠 <code>CODE</code> 参数区分功能：</p>
+<pre><code>POST /USER_d9833f/common/queryRemoteData?CODE=&lt;接口编号&gt;</code></pre>
+<p><strong>该网关只对"杨勇"做校验，不对"角色"做校验</strong> —— 只要持有任意一个有效学生会话，就能调用平台上绝大多数只读接口。</p>
+
+<h3>3.3 会话凭据结构与鉴权边界（校方自查用）</h3>
+<pre><code>x-token       = Cookie ssportal_token
+USER_cbb82e = Bearer &lt;JWT&gt;
+dhash         = md5(请求体 + token)
+ts            = &lt;毫秒时间戳+随机数&gt;;md5(&lt;同上&gt; + "m-web.etonedu.cn")
+Cookie        = ssportalcloudsession_id</code></pre>
+<table>
+  <thead><tr><th>条件</th><th>结果</th><th>说明</th></tr></thead>
+  <tbody>
+    <tr><td>完整学生会话</td><td><code>10000</code> 成功</td><td>—</td></tr>
+    <tr><td><strong>去掉 JWT（USER_cbb82e 头）</strong></td><td><strong><code>10000</code> 成功，数据照返</strong></td><td><strong>JWT 不参与该接口校验</strong></td></tr>
+    <tr><td><code>x-token</code> 置空</td><td><code>406</code> 鉴权失败</td><td>x-token 是有效校验点</td></tr>
+    <tr><td>不带 Cookie</td><td><code>403</code> 未登录或登录已失效</td><td>—</td></tr>
+    <tr><td>不存在的 CODE</td><td><code>90000</code> 接口不存在</td><td>—</td></tr>
+    <tr><td>换成其他学校的 <code>schoolId</code></td><td>返回 <code>0</code> 条</td><td><strong>租户隔离有效</strong></td></tr>
+  </tbody>
+</table>
+<div class="banner b-blue">
+  <p>跨校隔离是<strong>有效的</strong>（换 <code>schoolId</code> 返回 0 条），问题出在<strong>同一学校内的角色/数据归属隔离失效</strong>。这是常见组合，修复时不要把两者混为一谈。</p>
+</div>
+
+<h2>四、危害与合规风险</h2>
+<ol>
+  <li><strong>未成年人个人信息批量泄露</strong> —— 留宿/退宿原因、宿舍房间号属高度私密的生活信息，数据主体绝大多数为未满 18 周岁在校学生。</li>
+  <li><strong>教职工敏感个人信息泄露</strong> —— 3,438 条请假记录中含 <strong>1,053 条病假</strong>（健康信息）、<strong>30 条产假/陪产假</strong>（生育信息）、84 条丧假，事由为明文自由文本，且工作安排字段连带泄露<strong>代课教师姓名</strong>。</li>
+  <li><strong>可被学生直接实施</strong> —— 不需要任何漏洞利用技术，一个在校学生用正常浏览器 + 正常账号即可完成，传播门槛极低。</li>
+  <li><strong>宿舍房间号可用于物理定位</strong> —— 退宿记录含原房间号，结合姓名构成现实安全风险。</li>
+  <li><strong>合规条款</strong>：
+    <ul>
+      <li>《个人信息保护法》第 31 条（处理未成年人个人信息应取得监护人同意并制定专门规则）</li>
+      <li>《未成年人保护法》第四章 网络保护</li>
+      <li>《网络安全等级保护基本要求》访问控制条款（等保 2.0 三级要求"自主访问控制的粒度达到主体为用户级"）</li>
+      <li>教育系统若已完成等保备案，该项属于被测项</li>
+    </ul>
+  </li>
+</ol>
+
+<h2>五、整改建议</h2>
+<h3><span class="tag t-red">紧急</span> 建议 7 日内</h3>
+<ol>
+  <li><strong>为涉事接口增加数据归属校验</strong>：查询类接口默认以会话持有者身份为过滤条件，仅当调用者具备相应角色（班主任/宿管/德育/管理员）时才允许查询他人数据，超出范围显式返回无权限。</li>
+  <li><strong>在网关层按 CODE 建立角色白名单</strong>：为 <code>/USER_d9833f/common/queryRemoteData</code> 的每个 CODE 维护"允许调用的角色集合"，学生角色默认拒绝所有管理类 CODE。</li>
+  <li><strong><code>pageSize</code> 服务端强制上限</strong>（如 ≤ 200），防止一次拉取全量。</li>
+  <li><strong>排查导出接口 <code>respUrl</code></strong>：确认是否需要鉴权、是否已生成过可被下载的明文数据包，如有则立即失效化处理。</li>
+</ol>
+<h3><span class="tag t-amber">短期</span> 建议 30 日内</h3>
+<ol start="5">
+  <li>对全部 1,063 个 CODE 做一次角色矩阵梳理（本次已确认 87 个只读接口对学生放行，建议逐一确认是否必要）。</li>
+  <li><strong>启用接口调用审计日志</strong>，对单次返回超过 N 条个人信息记录的调用告警。</li>
+  <li><strong>修复 JWT 未被校验的问题</strong> —— 当前去掉 <code>USER_cbb82e</code> 头仍可正常返回数据，该凭证形同虚设。</li>
+  <li>手机号保持服务端掩码，并补充姓名的最小必要原则评估。</li>
+</ol>
+<h3><span class="tag t-green">长期</span></h3>
+<ol start="9">
+  <li>要求平台方（etonedu）在网关层提供统一的<strong>数据权限中间件</strong>，而不是由各业务接口自行实现 —— 本次事故正是"各自实现、多数没实现"的典型。</li>
+  <li>上线前引入<strong>越权专项测试</strong>（用低权限账号回放高权限接口清单）。</li>
+</ol>
+
+<h2>六、复现方式（供校方自查，最小化、无副作用）</h2>
+<pre><code># 1. 用任意一个学生账号登录 https://TARGET-SSO.example.edu/USER_d9833f/
+# 2. 从浏览器开发者工具取出 Cookie: ssportal_token / ssportalcloudsession_id
+# 3. 构造请求（签名头见 3.3 节）
+
+POST https://TARGET-SSO.example.edu/USER_d9833f/common/queryRemoteData?CODE=I_OA_QUERY_LEAVE_LIST
+Content-Type: USER_1fe289/json
+
+{"schoolId":50656,"pageNum":1,"pageSize":50,"CODE":"I_OA_QUERY_LEAVE_LIST"}
+
+# 期望（正常情况）：仅返回该学生本人的请假记录，或返回无权限
+# 实际（漏洞存在）：返回全校 3,438 条请假记录</code></pre>
+
+<h2>七、测试边界声明（重要）</h2>
+<div class="banner b-green">
+  <p><strong>本次测试严格遵循最小化原则，以下行为均未发生：</strong></p>
+  <p>✕ <strong>未下载 / 未保存任何学生或教职工的明文信息</strong> —— 所有证据文件只含记录数、字段名、掩码样本，不含任何姓名、理由、房间号、手机号明文。<br>
+  ✕ <strong>未执行任何写操作接口</strong> —— <code>I_CORE_DELETE_STUDENT_ACCOUNT</code>、<code>I_CORE_EDIT_SCHOOL</code>、<code>I_CORE_BDM_DEPT_DEL</code>、<code>I_DOC_DOC_AUTH_SAVE</code> 等全部未调用。<br>
+  ✕ <strong>未枚举学号/ID 连续性</strong>，未做撞库，未尝试登录他人账号。<br>
+  ✕ <strong>未导出、未留存任何数据文件</strong>。<br>
+  ✓ 仅使用<strong>本人授权的学生账号</strong>做只读查询。</p>
+  <p>请校方在处理完毕后告知，我将配合做修复验证与复测。</p>
+</div>
+
+<h2>八、附：其他已发现的中低危问题</h2>
+<table>
+  <thead><tr><th style="width:70px">编号</th><th>问题</th><th style="width:190px">位置</th><th style="width:170px">建议</th></tr></thead>
+  <tbody>
+    <tr><td><strong>NEW-3</strong></td><td>登录接口可枚举用户名（"账号不正确" vs "密码不正确" 响应不同），且<strong>完全无速率限制</strong>（实测 20 次连打无 429、无锁定、无验证码）</td><td><code>/auth/USER_4a2dbd</code></td><td>统一错误提示 + 接入限流/失败锁定</td></tr>
+    <tr><td><strong>NEW-1</strong></td><td>反射型 XSS（已浏览器实弹验证，弹窗触发成功）</td><td><code>hfwps:5555/soft?search=</code></td><td>输出编码 + 上 CSP</td></tr>
+    <tr><td><strong>NEW-2</strong></td><td>会话 Cookie 挂在父域 <code>TARGET.example.edu</code> 且无 <code>Secure</code></td><td><code>hfwps:5555</code></td><td>收窄 domain + 加 Secure/SameSite</td></tr>
+    <tr><td><strong>V1</strong></td><td>登录页纯 HTTP 明文传输（HTTPS 在该端口握手失败）</td><td><code>hfwps:5555</code></td><td>启用 HTTPS</td></tr>
+    <tr><td><strong>V3</strong></td><td>ThinkPHP 版本泄露 + 生产未关 debug</td><td><code>www.TARGET.example.edu</code></td><td>关闭 debug</td></tr>
+    <tr><td><strong>V2/V6</strong></td><td><code>PHPSESSID</code> 无 HttpOnly（浏览器实测可读）、缺失 HSTS/CSP/X-Frame-Options</td><td><code>www.TARGET.example.edu</code></td><td>补齐 Cookie 属性与安全头</td></tr>
+    <tr><td><strong>V8</strong></td><td>令牌存 localStorage，HttpOnly 对其无效</td><td>SSO 前端</td><td>迁移至 HttpOnly Cookie</td></tr>
+  </tbody>
+</table>
+
+<div class="footer">
+  本通报所有结论均来自实际请求证据，未做任何推测性定级。<br>
+  报送人：（白帽安全研究者，已获授权测试） · 2026-09-20
+</div>
+
+</div>
+</body>
+</html>
